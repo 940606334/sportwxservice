@@ -26,7 +26,7 @@ public class WxMsgController {
 
     @RequestMapping(value = "sendTicketMsg")
     @ResponseBody
-    public JsonResult getTicketMsg(TicketMsg ticketMsg, HttpServletRequest request){
+    public String getTicketMsg(TicketMsg ticketMsg, HttpServletRequest request){
         return wxMsgService.sendTicketMsg(ticketMsg,request);
     }
 }

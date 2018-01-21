@@ -46,38 +46,44 @@ public class WxMsgService {
      * @param request
      * @return
      */
-    public JsonResult sendTicketMsg(TicketMsg ticketMsg, HttpServletRequest request){
+    public String sendTicketMsg(TicketMsg ticketMsg, HttpServletRequest request){
         if(ticketMsg==null){
             logger.info("电子小票信息为空");
-            return new JsonResult(0,"电子小票信息为空");
+            return "电子小票信息为空";
+            //return new JsonResult(0,"电子小票信息为空");
         }
         Integer webid=ticketMsg.getWebid();
         if(webid==null){
             logger.info("机构id为空");
-            return new JsonResult(0,"机构id为空");
+            //return new JsonResult(0,"机构id为空");
+            return "机构id为空";
         }
         SportsWx sportsWx=sportsWxService.findByWebid(webid);
         if(sportsWx==null){
             logger.info("机构id为空");
-            return new JsonResult(0,"没有配置该机构的公众号");
+            //return new JsonResult(0,"没有配置该机构的公众号");
+            return "机构id为空";
         }
         String appid = sportsWx.getAppid();
         String appsecret = sportsWx.getSecret();
         Integer vipid=ticketMsg.getVipid();
         if(vipid==null){
             logger.info("机构id为空");
-            return new JsonResult(0,"会员id为空");
+            //return new JsonResult(0,"会员id为空");
+            return "机构id为空";
         }
         SportsUsers sportsUsersEntity=sportsUserService.findByVipid(vipid);
         if(sportsUsersEntity==null){
-            logger.info("机构id为空");
-            return new JsonResult(0,"会员信息为空");
+            logger.info("会员信息为空");
+            //return new JsonResult(0,"会员信息为空");
+            return "会员信息为空";
         }
         String openid=sportsUsersEntity.getOpenid();
         SportsMsgtemplate sportsMsgtemplate=sportsMsgtemplateService.getByWebid(webid);
         if(sportsMsgtemplate==null){
-            logger.info("机构id为空");
-            return new JsonResult(0,"请配置电子小票模板");
+            logger.info("请配置电子小票模板");
+            //return new JsonResult(0,"请配置电子小票模板");
+            return "请配置电子小票模板";
         }
         wxMpInMemoryConfigStorage.setAppId(appid);
         wxMpInMemoryConfigStorage.setSecret(appsecret);
@@ -93,15 +99,17 @@ public class WxMsgService {
         templateMessage.getData().add(new WxMpTemplateData("keyword2", ticketMsg.getKeyword2(), "#343434"));//交易时间
         templateMessage.getData().add(new WxMpTemplateData("keyword3", ticketMsg.getKeyword3(), "#343434"));//交易金额
         templateMessage.setUrl(sportsMsgtemplate.getRedirecturl());
-        JsonResult jsonResult=null;
+        //JsonResult jsonResult=null;
         try {
             String msgId = this.wxService.getTemplateMsgService().sendTemplateMsg(templateMessage);
             logger.info("发送成功:msgid="+msgId);
-            jsonResult=new JsonResult(1,msgId);
+            //jsonResult=new JsonResult(1,msgId);
+            return "1";
         }catch (WxErrorException e){
             logger.debug(e.getMessage());
-            jsonResult=new JsonResult(0,e.getMessage());
+            //jsonResult=new JsonResult(0,e.getMessage());
+            return e.getMessage();
         }
-        return jsonResult;
+        //return jsonResult;
     }
 }
