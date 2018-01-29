@@ -46,7 +46,7 @@ public class WxMsgService {
      * @param request
      * @return
      */
-    public String sendTicketMsg(TicketMsg ticketMsg, HttpServletRequest request){
+    public String sendTicketMsg(TicketMsg ticketMsg){
         if(ticketMsg==null){
             logger.info("电子小票信息为空");
             return "电子小票信息为空";
@@ -60,17 +60,17 @@ public class WxMsgService {
         }
         SportsWx sportsWx=sportsWxService.findByWebid(webid);
         if(sportsWx==null){
-            logger.info("机构id为空");
+            logger.info("没有配置该机构的公众号");
             //return new JsonResult(0,"没有配置该机构的公众号");
-            return "机构id为空";
+            return "没有配置该机构的公众号";
         }
         String appid = sportsWx.getAppid();
         String appsecret = sportsWx.getSecret();
         Integer vipid=ticketMsg.getVipid();
         if(vipid==null){
-            logger.info("机构id为空");
+            logger.info("会员id为空");
             //return new JsonResult(0,"会员id为空");
-            return "机构id为空";
+            return "会员id为空";
         }
         SportsUsers sportsUsersEntity=sportsUserService.findByVipid(vipid);
         if(sportsUsersEntity==null){

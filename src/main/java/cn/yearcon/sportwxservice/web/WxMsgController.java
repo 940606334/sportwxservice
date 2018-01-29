@@ -1,9 +1,12 @@
 package cn.yearcon.sportwxservice.web;
 
 
+import cn.yearcon.sportwxservice.entity.KefuMsg;
 import cn.yearcon.sportwxservice.entity.TicketMsg;
 import cn.yearcon.sportwxservice.json.JsonResult;
+import cn.yearcon.sportwxservice.service.WxKefuMessageService;
 import cn.yearcon.sportwxservice.service.WxMsgService;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +26,17 @@ public class WxMsgController {
 
     @Autowired
     private WxMsgService wxMsgService;
+    @Autowired
+    private WxKefuMessageService wxKefuMessageService;
 
     @RequestMapping(value = "sendTicketMsg")
     @ResponseBody
-    public String getTicketMsg(TicketMsg ticketMsg, HttpServletRequest request){
-        return wxMsgService.sendTicketMsg(ticketMsg,request);
+    public String getTicketMsg(TicketMsg ticketMsg){
+        return wxMsgService.sendTicketMsg(ticketMsg);
+    }
+    @RequestMapping(value = "sendKefuMsg")
+    @ResponseBody
+    public JsonResult sendKefuMsg(KefuMsg kefuMsg){
+        return wxKefuMessageService.sendKefuMessage(kefuMsg);
     }
 }
