@@ -2810,7 +2810,7 @@
     </column>
     <column id="560" parent="250" name="sex">
       <Position>10</Position>
-      <Comment>用户的性别，值为1时是男性，值为2时是女性，值为0时是未知   </Comment>
+      <Comment>用户的性别，值为1时是男性，值为2时是女性，值为0时是未知</Comment>
       <DataType>varchar(10)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -2828,7 +2828,7 @@
     </column>
     <column id="563" parent="250" name="headimgurl">
       <Position>13</Position>
-      <Comment>用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空  </Comment>
+      <Comment>用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空</Comment>
       <DataType>varchar(150)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -2979,7 +2979,7 @@
     </column>
     <column id="588" parent="253" name="imgurl">
       <Position>3</Position>
-      <Comment>logo地址 </Comment>
+      <Comment>logo地址</Comment>
       <DataType>varchar(150)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -2991,7 +2991,7 @@
     </column>
     <column id="590" parent="253" name="pageurl">
       <Position>5</Position>
-      <Comment>地址跳转地址 </Comment>
+      <Comment>地址跳转地址</Comment>
       <DataType>varchar(150)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>

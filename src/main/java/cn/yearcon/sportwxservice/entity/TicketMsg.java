@@ -3,7 +3,7 @@ package cn.yearcon.sportwxservice.entity;
 import lombok.Data;
 
 /**
- * @author itguang
+ * @author ayong
  * @create 2018-01-17 13:57
  **/
 @Data

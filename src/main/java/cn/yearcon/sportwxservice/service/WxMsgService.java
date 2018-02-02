@@ -43,7 +43,6 @@ public class WxMsgService {
     /**
      * 发送店址电子小票
      * @param ticketMsg
-     * @param request
      * @return
      */
     public String sendTicketMsg(TicketMsg ticketMsg){
@@ -96,7 +95,7 @@ public class WxMsgService {
         templateMessage.addWxMpTemplateData(
                 new WxMpTemplateData("remark", ticketMsg.toString()+sportsMsgtemplate.getRemark(), "#343434"));
         templateMessage.getData().add(new WxMpTemplateData("keyword1", ticketMsg.getKeyword1(), "#343434"));//交易单号
-        templateMessage.getData().add(new WxMpTemplateData("keyword2", ticketMsg.getKeyword2(), "#343434"));//交易时间
+        templateMessage.getData().add(new WxMpTemplateData("keyword2", formatDate(ticketMsg.getKeyword2()), "#343434"));//交易时间
         templateMessage.getData().add(new WxMpTemplateData("keyword3", ticketMsg.getKeyword3(), "#343434"));//交易金额
         templateMessage.setUrl(sportsMsgtemplate.getRedirecturl());
         //JsonResult jsonResult=null;
@@ -111,5 +110,18 @@ public class WxMsgService {
             return e.getMessage();
         }
         //return jsonResult;
+    }
+
+    /**
+     * 格式化交易时间
+     * @param str
+     * @return
+     */
+    public String formatDate(String str){
+        //System.out.println(str);
+        String sub=str.substring(0,10);
+        //System.out.println(sub);
+        return sub+" "+str.substring(10);
+        //System.out.println(str);
     }
 }

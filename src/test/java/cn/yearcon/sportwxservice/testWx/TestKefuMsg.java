@@ -18,6 +18,6 @@ public class TestKefuMsg {
     private WxKefuMessageService wxKefuMessageService;
     @Test
     public void test(){
-        wxKefuMessageService.sendKefuMessage("1","1");
+        //wxKefuMessageService.sendKefuMessage("1","1");
     }
 }
